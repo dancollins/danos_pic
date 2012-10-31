@@ -34,12 +34,18 @@ void init(void) {
 int main(void) {
     init();
 
-    job_t blinkyLed = {
-        
+    job_t blinkyLedJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = blinkyLed
     };
 
-    jobs_add(blinkyLed, timer_currentTime());
-    jobs_add(checkButtons, timer_currentTime());
+    job_t checkButtonsJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = checkButtons
+    };
+
+    jobs_add(&blinkyLedJob);
+    jobs_add(&checkButtonsJob);
 
     while (1) {
         board_update(); // Check the buttons
@@ -53,19 +59,26 @@ int main(void) {
 }
 
 Bool checkButtons(void) {
+    job_t ledJob = {
+        .activationTime = timer_currentTime() + 500
+    };
+
     if (board_getButtonState(1)) {
         led2 = 1;
-        jobs_add(turnOffLed2, timer_currentTime() + 500);
+        ledJob.jobFunction = turnOffLed2;
+        jobs_add(&ledJob);
     }
 
     if (board_getButtonState(2)) {
         led3 = 1;
-        jobs_add(turnOffLed3, timer_currentTime() + 500);
+        ledJob.jobFunction = turnOffLed3;
+        jobs_add(&ledJob);
     }
 
     if (board_getButtonState(3)) {
         led4 = 1;
-        jobs_add(turnOffLed4, timer_currentTime() + 500);
+        ledJob.jobFunction = turnOffLed4;
+        jobs_add(&ledJob);
     }
 
     return False; // This job never finishes

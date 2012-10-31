@@ -4,16 +4,16 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f3" displayName="low-level" projectFiles="true">
+        <itemPath>include/low-level/board.h</itemPath>
+        <itemPath>include/low-level/serial.h</itemPath>
+        <itemPath>include/low-level/timer.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2" displayName="OS" projectFiles="true">
-        <itemPath>jobs.h</itemPath>
+        <itemPath>include/os/jobs.h</itemPath>
+        <itemPath>include/os/list.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="Peripheral" projectFiles="true">
-        <itemPath>board.h</itemPath>
-        <itemPath>timer.h</itemPath>
-        <itemPath>serial.h</itemPath>
-      </logicalFolder>
-      <itemPath>types.h</itemPath>
-      <itemPath>list.h</itemPath>
+      <itemPath>include/types.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -22,16 +22,16 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="low-level" projectFiles="true">
+        <itemPath>src/low-level/board.c</itemPath>
+        <itemPath>src/low-level/serial.c</itemPath>
+        <itemPath>src/low-level/timer.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2" displayName="OS" projectFiles="true">
-        <itemPath>jobs.c</itemPath>
+        <itemPath>src/os/jobs.c</itemPath>
+        <itemPath>src/os/list.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="f1" displayName="Peripheral" projectFiles="true">
-        <itemPath>timer.c</itemPath>
-        <itemPath>board.c</itemPath>
-        <itemPath>serial.c</itemPath>
-      </logicalFolder>
-      <itemPath>main.c</itemPath>
-      <itemPath>list.c</itemPath>
+      <itemPath>src/main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -72,6 +72,27 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <C32>
+        <property key="additional-warnings" value="false"/>
+        <property key="enable-app-io" value="false"/>
+        <property key="enable-omit-frame-pointer" value="false"/>
+        <property key="enable-symbols" value="true"/>
+        <property key="enable-unroll-loops" value="false"/>
+        <property key="exclude-floating-point" value="false"/>
+        <property key="extra-include-directories"
+                  value="C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\low-level;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\os"/>
+        <property key="generate-16-bit-code" value="false"/>
+        <property key="isolate-each-function" value="false"/>
+        <property key="keep-inline" value="false"/>
+        <property key="make-warnings-into-errors" value="false"/>
+        <property key="optimization-level" value=""/>
+        <property key="place-data-into-section" value="false"/>
+        <property key="post-instruction-scheduling" value="default"/>
+        <property key="pre-instruction-scheduling" value="default"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="strict-ansi" value="false"/>
+        <property key="support-ansi" value="false"/>
+        <property key="use-cci" value="false"/>
+        <property key="use-indirect-calls" value="false"/>
       </C32>
       <C32-AS>
       </C32-AS>
@@ -97,6 +118,29 @@
         <property key="warn-section-align" value="false"/>
       </C32-LD>
       <C32CPP>
+        <property key="additional-warnings" value="false"/>
+        <property key="check-new" value="false"/>
+        <property key="eh-specs" value="true"/>
+        <property key="enable-app-io" value="false"/>
+        <property key="enable-omit-frame-pointer" value="false"/>
+        <property key="enable-symbols" value="true"/>
+        <property key="enable-unroll-loops" value="false"/>
+        <property key="exceptions" value="true"/>
+        <property key="exclude-floating-point" value="false"/>
+        <property key="extra-include-directories" value=""/>
+        <property key="generate-16-bit-code" value="false"/>
+        <property key="isolate-each-function" value="false"/>
+        <property key="keep-inline" value="false"/>
+        <property key="make-warnings-into-errors" value="false"/>
+        <property key="optimization-level" value=""/>
+        <property key="place-data-into-section" value="false"/>
+        <property key="post-instruction-scheduling" value="default"/>
+        <property key="pre-instruction-scheduling" value="default"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="rtti" value="true"/>
+        <property key="strict-ansi" value="false"/>
+        <property key="use-cci" value="false"/>
+        <property key="use-indirect-calls" value="false"/>
       </C32CPP>
       <C32Global>
       </C32Global>
