@@ -26,24 +26,31 @@ Bool turnOffLed4(void);
  * Prepare the various peripherals for use
  */
 void init(void) {
-    InitialiseBoard();
-    timer_init();
-    jobs_init();
+    InitialiseBoard(); // Prepare the board (this is basic IO stuff, and also CPU init stuff)
+    timer_init(); // Prepare the systick timer
+    jobs_init(); // Prepare the job controller
 }
 
 int main(void) {
     init();
 
+    /*
+     * Create a job description for a blinking LED
+     */
     job_t blinkyLedJob = {
         .activationTime = timer_currentTime(),
         .jobFunction = blinkyLed
     };
 
+    /*
+     * Create a job description that will check the state of the buttons
+     */
     job_t checkButtonsJob = {
         .activationTime = timer_currentTime(),
         .jobFunction = checkButtons
     };
 
+    // Add the jobs into the jobs controller
     jobs_add(&blinkyLedJob);
     jobs_add(&checkButtonsJob);
 
@@ -59,10 +66,14 @@ int main(void) {
 }
 
 Bool checkButtons(void) {
+    // This will temporarily hold a job description for the LEDs if one needs to be created
     job_t ledJob = {
-        .activationTime = timer_currentTime() + 500
+        .activationTime = timer_currentTime() + 500 // LEDs need to be turned off in 500mS
     };
 
+    /*
+     * These jobs will turn the LED on, and create a job to turn them off in 500mS
+     */
     if (board_getButtonState(1)) {
         led2 = 1;
         ledJob.jobFunction = turnOffLed2;
@@ -88,6 +99,9 @@ Bool blinkyLed(void) {
     static uint32_t delayTime = 0; // The time to delay before executing this thread again
     uint32_t currentTime = timer_currentTime();
 
+    /*
+     * TODO: This thread actually only needs to run at 2Hz, so job descriptions should allow for this by adding a field called update period
+     */
     if (delayTime <= currentTime) { // If it is time to run this job...
         led1 ^= 1;
 
@@ -97,6 +111,10 @@ Bool blinkyLed(void) {
     return False; // This job never stops
 }
 
+/**
+ * Turn LED off
+ * @return True when the job has completed
+ */
 Bool turnOffLed2(void) {
     led2 = 0;
     return True;
