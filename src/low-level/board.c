@@ -9,7 +9,7 @@
 #pragma config FPLLIDIV = DIV_2 // Divide 8MHz / 2 = 4MHz
 #pragma config FPLLMUL = MUL_20 // Multiply 4MHz * 20 = 80MHz
 #pragma config FPLLODIV = DIV_1 // Don't divide the output = 80MHz
-#pragma config FPBDIV = DIV_1 // Don't divide the periperhal bus clock (TODO: Probably should divide it down.  Nothing needs 80MHz..!)
+#pragma config FPBDIV = DIV_2 // PB Clock will be 40MHz
 
 #ifdef __DEBUG
 #pragma config ICESEL = ICS_PGx1
@@ -28,11 +28,27 @@ void InitialiseBoard(void) {
     init_led2();
     init_led3();
     init_led4();
+    init_led5();
+    init_led6();
+    init_led7();
+    init_led8();
+    init_led9();
+    init_led10();
+    init_led11();
+    init_led12();
 
     led1 = 0;
     led2 = 0;
     led3 = 0;
     led4 = 0;
+    led5 = 0;
+    led6 = 0;
+    led7 = 0;
+    led8 = 0;
+    led9 = 0;
+    led10 = 0;
+    led11 = 0;
+    led12 = 0;
 
     // Buttons
     init_but1();
@@ -106,6 +122,9 @@ void board_update(void) {
             board_b3.read = False;
         }
     }
+
+    // UART
+    serial_transmit();
 }
 
 void board_idle(void) {
@@ -142,7 +161,15 @@ Bool board_getButtonState(uint8_t button) {
  * Interrupt vectors
  */
 void __ISR(_TIMER_1_VECTOR, ipl5) isr_timer1(void) {
-    mT1ClearIntFlag(); // Clear interrupt flag
+    mT1ClearIntFlag(); // Clear interrupt flag TODO: This macro is legacy
     
     timer_update();
+}
+
+void __ISR(_UART_1_VECTOR, ipl4) isr_uart1(void) {
+    if ((IEC0bits.U1RXIE == True) &&(IFS0bits.U1RXIF == True)) {
+        IFS0bits.U1RXIF = 0; // Clear the flag
+
+        serial_receive(UART1);
+    }
 }

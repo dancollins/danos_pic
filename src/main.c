@@ -10,12 +10,15 @@
 #include <xc.h>
 
 #include "types.h"
-#include "board.h"
-#include "timer.h"
+
 #include "jobs.h"
 
-// TODO: Make this better..!
+#include "board.h"
+#include "timer.h"
+#include "serial.h"
+
 Bool checkButtons(void);
+Bool checkUart(void);
 Bool blinkyLed(void);
 
 Bool turnOffLed2(void);
@@ -28,11 +31,14 @@ Bool turnOffLed4(void);
 void init(void) {
     InitialiseBoard(); // Prepare the board (this is basic IO stuff, and also CPU init stuff)
     timer_init(); // Prepare the systick timer
+    serial_init(); // Prepare the serial port
     jobs_init(); // Prepare the job controller
 }
 
 int main(void) {
     init();
+
+    serial_putString("Starting up...\r\n");
 
     /*
      * Create a job description for a blinking LED
@@ -50,12 +56,18 @@ int main(void) {
         .jobFunction = checkButtons
     };
 
+    job_t checkSerialJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = checkUart
+    };
+
     // Add the jobs into the jobs controller
     jobs_add(&blinkyLedJob);
     jobs_add(&checkButtonsJob);
+    jobs_add(&checkSerialJob);
 
     while (1) {
-        board_update(); // Check the buttons
+        board_update(); // Run the low level operations (buttons, uart...)
         jobs_update(); // Run the jobs
         
         // Go into sleep mode
@@ -78,26 +90,55 @@ Bool checkButtons(void) {
         led2 = 1;
         ledJob.jobFunction = turnOffLed2;
         jobs_add(&ledJob);
+        serial_putString("Button 1 pressed.\r\n");
     }
 
     if (board_getButtonState(2)) {
         led3 = 1;
         ledJob.jobFunction = turnOffLed3;
         jobs_add(&ledJob);
+        serial_putString("Button 2 pressed.\r\n");
     }
 
     if (board_getButtonState(3)) {
         led4 = 1;
         ledJob.jobFunction = turnOffLed4;
         jobs_add(&ledJob);
+        serial_putString("Button 3 pressed.\r\n");
     }
 
     return False; // This job never finishes
 }
 
+Bool checkUart(void) {
+    uint8_t * uart_buf = serial_getBuffer(UART1);
+
+    if (strstr(uart_buf, "on") != Null) {
+        led6 = 1;
+        serial_putString("Turning LED on\r\n");
+        serial_putChar('{');
+        serial_putString(uart_buf);
+        serial_putString("}\r\n");
+        serial_clearBuffer(UART1);
+    }
+
+    if (strstr(uart_buf, "off") != Null) {
+        led6 = 0;
+        serial_putString("Turning LED off\r\n");
+        serial_putChar('{');
+        serial_putString(uart_buf);
+        serial_putString("}\r\n");
+        serial_clearBuffer(UART1);
+    }
+
+    return False; // This job never ends
+}
+
 Bool blinkyLed(void) {
     static uint32_t delayTime = 0; // The time to delay before executing this thread again
     uint32_t currentTime = timer_currentTime();
+
+    uint8_t * rxBuf; // TODO: Remove this.  This is for debugging the UART getting more characters than it should
 
     /*
      * TODO: This thread actually only needs to run at 2Hz, so job descriptions should allow for this by adding a field called update period
@@ -106,6 +147,11 @@ Bool blinkyLed(void) {
         led1 ^= 1;
 
         delayTime = currentTime + 500; // Execute this job every 500mS
+
+        rxBuf = serial_getBuffer(UART1);
+        serial_putChar('[');
+        serial_putString(rxBuf);
+        serial_putString("]\r\n");
     }
 
     return False; // This job never stops
