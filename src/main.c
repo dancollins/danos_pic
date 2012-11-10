@@ -147,11 +147,6 @@ Bool blinkyLed(void) {
         led1 ^= 1;
 
         delayTime = currentTime + 500; // Execute this job every 500mS
-
-        rxBuf = serial_getBuffer(UART1);
-        serial_putChar('[');
-        serial_putString(rxBuf);
-        serial_putString("]\r\n");
     }
 
     return False; // This job never stops

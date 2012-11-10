@@ -168,8 +168,8 @@ void __ISR(_TIMER_1_VECTOR, ipl5) isr_timer1(void) {
 
 void __ISR(_UART_1_VECTOR, ipl4) isr_uart1(void) {
     if ((IEC0bits.U1RXIE == True) &&(IFS0bits.U1RXIF == True)) {
-        IFS0bits.U1RXIF = 0; // Clear the flag
-
         serial_receive(UART1);
+        
+        IFS0bits.U1RXIF = 0; // Clear the flag
     }
 }
