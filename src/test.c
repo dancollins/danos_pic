@@ -9,14 +9,7 @@
 
 #include <xc.h>
 
-#include "types.h"
-
-#include "jobs.h"
-
-#include "board.h"
-#include "timer.h"
-#include "serial.h"
-#include "iic.h"
+#include "DanOS.h"
 
 Bool checkButtons(void);
 Bool checkUart(void);
