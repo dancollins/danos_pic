@@ -15,11 +15,14 @@ Bool checkButtons(void);
 Bool checkUart(void);
 Bool sendi2c(void);
 Bool readi2c(void);
+Bool checki2c(void);
 Bool blinkyLed(void);
 
 Bool turnOffLed2(void);
 Bool turnOffLed3(void);
 Bool turnOffLed4(void);
+
+uint8_t * eepromReceiveBuffer = Null; // The i2c driver will allocate some RAM for this when it has completed
 
 /**
  * Prepare the various peripherals for use
@@ -63,16 +66,11 @@ int main(void) {
         .jobFunction = sendi2c
     };
 
-    job_t readI2CJob = {
-        .activationTime = timer_currentTime(),
-        .jobFunction = readi2c
-    };
-
     // Add the jobs into the jobs controller
     jobs_add(&blinkyLedJob);
     jobs_add(&checkButtonsJob);
     jobs_add(&checkSerialJob);
-    jobs_add(&readI2CJob);
+    jobs_add(&sendI2CJob);
 
     while (1) {
         board_update(); // Run the low level operations (buttons, uart...)
@@ -139,15 +137,23 @@ Bool checkUart(void) {
 Bool sendi2c(void) {
     uint8_t data[6] = {0x00, 0x00, 0x55, 0x01, 0x02, 0x03};
 
-    I2CFrame_t f = {
-        .address = 0xA0,
-        .bytesToRead = 0,
-        .tx_buf_size = 6
-    };
+    I2CFrame_t * f = malloc(sizeof(I2CFrame_t));
 
-    memcpy(f.tx_buf, data, 6);
+    f->address = 0xA0;
+    f->bytesToRead = 0;
+    f->tx_buf_size = 6;
+    f->tx_buf = calloc(6, sizeof(uint8_t));
+
+    memcpy(f->tx_buf, data, 6);
 
     i2c_prepareFrame(I2C2, f);
+
+    job_t readI2CJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = readi2c
+    };
+    
+    jobs_add(&readI2CJob);
 
     return True;
 }
@@ -155,15 +161,46 @@ Bool sendi2c(void) {
 Bool readi2c(void) {
     uint8_t data[2] = {0x00, 0x00};
 
-    I2CFrame_t f = {
-        .address = 0xA0,
-        .bytesToRead = 5,
-        .tx_buf_size = 2
+    I2CFrame_t * f = malloc(sizeof(I2CFrame_t));
+
+    f->address = 0xA0;
+    f->bytesToRead = 4;
+    f->rx_buf = calloc(4, sizeof(uint8_t));
+    f->tx_buf_size = 2;
+    f->tx_buf = calloc(2, sizeof(uint8_t));
+
+    memcpy(f->tx_buf, data, 2);
+
+    job_t checkI2CJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = checki2c
     };
 
-    memcpy(f.tx_buf, data, 2);
+    jobs_add(&checkI2CJob); // This will check that this job was a success
 
-    return i2c_prepareFrame(I2C2, f); // This will return false if it fails, and therefor make this job run again
+    return i2c_prepareFrame(I2C2, f);
+}
+
+Bool checki2c(void) {
+    // Check that the I2C module has sent the data
+    if (I2C_2.state != IDLE) {
+        return False;
+    }
+
+    // Check the read operation was successful
+    if (I2C_2.frame->success == True) {
+        return True;
+    }
+
+    // If not, try again
+    job_t readI2CJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = readi2c
+    };
+
+    jobs_add(&readI2CJob);
+
+    return True;
 }
 
 Bool blinkyLed(void) {

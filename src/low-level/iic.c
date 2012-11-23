@@ -1,7 +1,5 @@
 #include "iic.h"
 
-I2CModule_t I2C_2;
-
 void i2c_init(void) {
     I2C_2.moduleName = I2C2;
 
@@ -18,43 +16,23 @@ void i2c_init(void) {
     IPC8bits.I2C2IS = 2; // Subpriority level 2
 }
 
-Bool i2c_readBytesFromBuffer(uint8_t p, uint8_t n, uint8_t * b) {
-    switch (p) {
-        case I2C2:
-            // Check the buffer is big enough to read n bytes from
-            if (n >= I2C_RX_BUFFER_SIZE)
-                break;
-
-            // Check we have that much data to send back
-            if (n > I2C_2.rx_buf_index)
-                break;
-
-            // Read n bytes out of the buffer
-            uint8_t i = 0;
-            for (i = 0; i < n; i++) {
-                b[i] = I2C_2.rx_buf[i];
-            }
-
-            return True;
-    }
-
-    return False;
-}
-
-Bool i2c_prepareFrame(uint8_t p, I2CFrame_t frame) {
+Bool i2c_prepareFrame(uint8_t p, I2CFrame_t * frame) {
     switch (p) {
         case I2C2:
             // Check we aren't already sending data
-            if (I2C_2.dataToSend == True)
+            if (I2C_2.state != IDLE)
                 return False;
-            
-            // Check we have enough room to receive
-            if (frame.bytesToRead >= I2C_RX_BUFFER_SIZE)
-                return False;
-            
-            memcpy(&I2C_2.frame, &frame, sizeof(I2CFrame_t)); // Copy the transaction details
-            I2C_2.dataToSend = True;
 
+            // Check the module isn't being used by something else
+            if (I2C_2.frameToSend == True)
+                return False;
+
+            frame->rx_buf_index = 0;
+            frame->tx_buf_index = 0;
+            
+            I2C_2.frame = frame; // Store the frame as the next job to do
+            I2C_2.frameToSend = True;
+            
             return True;
     }
 
@@ -65,10 +43,8 @@ void i2c_update(void) {
     // TODO: Multiple ports
     if (I2C_2.state == IDLE) {
         // If there is data to send
-        if (I2C_2.dataToSend == True) {
-            led10 = 1;
+        if (I2C_2.frameToSend == True) {
             I2C_2.state = START;
-            I2C_2.dataDirection = WRITING;
 
             i2c_isr(I2C2);
         }
@@ -95,21 +71,42 @@ void i2c_isr(uint8_t p) {
         case START:
             I2CStart(mod->moduleName);
             mod->state = ADDRESS;
+            I2C_2.dataDirection = WRITING;
             break;
 
         case ADDRESS:
             switch (mod->dataDirection) {
                 case READING:
-                    I2CSendByte(mod->moduleName, mod->frame.address + 1);
-                    mod->state = READ;
+                    I2CSendByte(mod->moduleName, mod->frame->address + 1);
+                    mod->state = CHECK_ACK;
                     break;
 
                 case WRITING:
-                    I2CSendByte(mod->moduleName, mod->frame.address);
-                    mod->state = WRITE;
+                    I2CSendByte(mod->moduleName, mod->frame->address);
+                    mod->state = CHECK_ACK;
                     break;
             }
 
+            break;
+
+        case CHECK_ACK:
+            if (I2CByteWasAcknowledged(mod->moduleName) == True) {
+                switch (mod->dataDirection) {
+                    case READING:
+                        mod->state = READ;
+                        break;
+
+                    case WRITING:
+                        mod->state = WRITE;
+                        break;
+                }
+            } else {
+                mod->frame->success = False;
+                mod->state = STOP;
+            }
+
+            i2c_isr(mod->moduleName);
+            
             break;
 
         case RESTART:
@@ -118,20 +115,21 @@ void i2c_isr(uint8_t p) {
             mod->state = ADDRESS;
             break;
 
-        case READSTART:
-            I2CReceiverEnable(I2C2, TRUE);
+        case READ_START:
+            I2CReceiverEnable(mod->moduleName, TRUE);
             mod->state = READ;
             break;
 
         case READ:
-            mod->rx_buf[mod->rx_buf_index++] = I2CGetByte(mod->moduleName);
+            mod->frame->rx_buf[mod->frame->rx_buf_index++] = I2CGetByte(mod->moduleName);
                 
             // If we need to read more bytes send an ACK
-            if (mod->rx_buf_index <= mod->frame.bytesToRead) {
-                I2CAcknowledgeByte(I2C2, True); // Send an ACK
-                mod->state = READSTART; // Prepare for the next byte
+            if (mod->frame->rx_buf_index <= mod->frame->bytesToRead) {
+                I2CAcknowledgeByte(mod->moduleName, True); // Send an ACK
+                mod->state = READ_START; // Prepare for the next byte
             } else {
-                I2CAcknowledgeByte(I2C2, False); // Send a NACK
+                I2CAcknowledgeByte(mod->moduleName, False); // Send a NACK
+                mod->frame->success = True;
                 mod->state = STOP; // Prepare for a stop condition
             }
 
@@ -139,13 +137,14 @@ void i2c_isr(uint8_t p) {
 
         case WRITE:
             // If there are still bytes to send
-            if (mod->frame.tx_buf_index < mod->frame.tx_buf_size) {
-                I2CSendByte(mod->moduleName, mod->frame.tx_buf[mod->frame.tx_buf_index++]);
+            if (mod->frame->tx_buf_index < mod->frame->tx_buf_size) {
+                I2CSendByte(mod->moduleName, mod->frame->tx_buf[mod->frame->tx_buf_index++]);
             } else {
                 // If we need to read some bytes
-                if (mod->frame.bytesToRead > 0) {
+                if (mod->frame->bytesToRead > 0) {
                     mod->state = RESTART; // Send a restart condition
                 } else {
+                    mod->frame->success = True;
                     mod->state = STOP; // Send a stop condition
                 }
 
@@ -156,9 +155,8 @@ void i2c_isr(uint8_t p) {
 
         case STOP:
             I2CStop(mod->moduleName);
-            I2C_2.dataToSend = False;
+            mod->frameToSend = False;
             mod->state = IDLE;
-            led10 = 0;
             break;
 
         case BUSERROR:

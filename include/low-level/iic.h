@@ -26,14 +26,19 @@ typedef enum {
     IDLE, // Bus is idle
     START, // Send a start condition
     ADDRESS, // Send address
+    CHECK_ACK,
     RESTART, // Enable master receive
-    READSTART, // Start a read sequence
+    READ_START, // Start a read sequence
     READ, // Read a byte
     WRITE, // Send a byte
     STOP, // Send a stop condition
     BUSERROR // Reset the bus logic
 } I2CState_t;
 
+/**
+ * A higher level state
+ * Is the I2C module currently reading or writing data?
+ */
 typedef enum {
     READING,
     WRITING
@@ -46,11 +51,15 @@ typedef struct {
     uint8_t address; // The 8bit write address (ADDR<<1) + W
 
     // TODO: Replace with a FIFO buffer
-    uint8_t tx_buf[I2C_TX_BUFFER_SIZE]; // The data to send
+    uint8_t * tx_buf; // The data to send
     uint8_t tx_buf_index; // Location of the cursor
     uint8_t tx_buf_size; // Number of bytes in the buffer
 
+    uint8_t * rx_buf; // Where data will be entered
+    uint8_t rx_buf_index; // Location of the cursor
     uint8_t bytesToRead; // Number of bytes to read back
+
+    Bool success; // True when the frame has been processed
 } I2CFrame_t;
 
 /**
@@ -61,15 +70,13 @@ typedef struct {
 
     I2CState_t state;
 
-    // TODO: Replace with a FIFO buffer
-    uint8_t rx_buf[I2C_RX_BUFFER_SIZE]; // Bytes will be read from the I2C into here
-    uint8_t rx_buf_index; // Location of the cursor
-
-    I2CFrame_t frame; // A single transaction
-    Bool dataToSend; // True when there is data to send
+    I2CFrame_t * frame; // A single transaction
+    Bool frameToSend; // True when there is data to send
 
     I2CDirection_t dataDirection;
 } I2CModule_t;
+
+I2CModule_t I2C_2;
 
 /**
  * Prepare the i2c module/s for use
@@ -77,20 +84,12 @@ typedef struct {
 void i2c_init(void);
 
 /**
- * Read a number of bytes from the given i2c port buffer
- * @param p The port to read from
- * @param n The number of bytes to read
- * @param b The array to read into
- */
-Bool i2c_readBytesFromBuffer(uint8_t p, uint8_t n, uint8_t * b);
-
-/**
  * Load an I2C transaction for the given module
  * @param p The port to use
  * @param frame The frame to load
  * @return True on success
  */
-Bool i2c_prepareFrame(uint8_t p, I2CFrame_t frame);
+Bool i2c_prepareFrame(uint8_t p, I2CFrame_t * frame);
 
 /**
  * Used to begin transactions if available

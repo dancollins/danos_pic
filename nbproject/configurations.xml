@@ -4,6 +4,9 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="driver" projectFiles="true">
+        <itemPath>include/driver/i2cEeprom.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f3" displayName="low-level" projectFiles="true">
         <itemPath>include/low-level/board.h</itemPath>
         <itemPath>include/low-level/serial.h</itemPath>
@@ -24,6 +27,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="f3" displayName="driver" projectFiles="true">
+        <itemPath>src/driver/i2cEeprom.c</itemPath>
+      </logicalFolder>
       <logicalFolder name="f1" displayName="low-level" projectFiles="true">
         <itemPath>src/low-level/board.c</itemPath>
         <itemPath>src/low-level/serial.c</itemPath>
