@@ -19,8 +19,8 @@
 
 // TODO: Support more than one UART
 
-#define TX_BUFFER_SIZE 512 // The bytes in RAM that each buffer will ocupy (there is a Tx and an Rx buffer)
-#define RX_BUFFER_SIZE 256 // The bytes in RAM that each buffer will ocupy (there is a Tx and an Rx buffer)
+#define SERIAL_TX_BUFFER_SIZE 512 // The bytes in RAM that each buffer will ocupy (there is a Tx and an Rx buffer)
+#define SERIAL_RX_BUFFER_SIZE 256 // The bytes in RAM that each buffer will ocupy (there is a Tx and an Rx buffer)
 
 /**
  * Prepares the serial ports for use

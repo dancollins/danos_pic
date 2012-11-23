@@ -1,7 +1,8 @@
 #include "serial.h"
 
-uint8_t uart_tx_buf[TX_BUFFER_SIZE];
-uint8_t uart_rx_buf[RX_BUFFER_SIZE];
+// TODO: Support more serial ports
+uint8_t uart_tx_buf[SERIAL_TX_BUFFER_SIZE];
+uint8_t uart_rx_buf[SERIAL_RX_BUFFER_SIZE];
 
 uint32_t uart_tx_buf_writing; // The end of the tx buffer
 uint32_t uart_tx_buf_written; // The position of the transmit 'cursor' in the buffer
@@ -35,7 +36,7 @@ void serial_receive(uint8_t port) {
     
     switch (port)  {
         case UART1:
-            if (uart_rx_buf_index >= RX_BUFFER_SIZE) // Can't add to a full buffer
+            if (uart_rx_buf_index >= SERIAL_RX_BUFFER_SIZE) // Can't add to a full buffer
                 break;
 
             rx = U1RXREG;
@@ -65,7 +66,7 @@ void serial_transmit(void) {
 }
 
 Bool serial_putChar(uint8_t c) {
-    if (uart_tx_buf_size >= TX_BUFFER_SIZE)
+    if (uart_tx_buf_size >= SERIAL_TX_BUFFER_SIZE)
         return False;
 
     uart_tx_buf[uart_tx_buf_writing++] = c; // Add the character to the buffer
@@ -74,7 +75,7 @@ Bool serial_putChar(uint8_t c) {
 }
 
 Bool serial_putString(uint8_t *s) {
-    if (strlen(s) >= (TX_BUFFER_SIZE - uart_tx_buf_size))
+    if (strlen(s) >= (SERIAL_TX_BUFFER_SIZE - uart_tx_buf_size))
         return False; // String is too big
     
     while(*s)
@@ -86,7 +87,7 @@ Bool serial_putString(uint8_t *s) {
 Bool serial_putData(uint8_t *buf, uint32_t len) {
     uint32_t i;
     
-    if (len >= TX_BUFFER_SIZE)
+    if (len >= SERIAL_TX_BUFFER_SIZE)
         return False; // String is too big
 
     for (i = 0; i < len; i++)
@@ -117,7 +118,7 @@ void serial_clearBuffer(uint8_t port) {
             uart_rx_buf_index = 0;
 
             for (j = 0; j < 2; j++)
-                for (i = 0; i < RX_BUFFER_SIZE; i++)
+                for (i = 0; i < SERIAL_RX_BUFFER_SIZE; i++)
                     uart_rx_buf[i] = Null;
             
             break;

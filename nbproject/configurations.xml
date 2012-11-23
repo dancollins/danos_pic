@@ -8,6 +8,7 @@
         <itemPath>include/low-level/board.h</itemPath>
         <itemPath>include/low-level/serial.h</itemPath>
         <itemPath>include/low-level/timer.h</itemPath>
+        <itemPath>include/low-level/iic.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="OS" projectFiles="true">
         <itemPath>include/os/jobs.h</itemPath>
@@ -26,6 +27,7 @@
         <itemPath>src/low-level/board.c</itemPath>
         <itemPath>src/low-level/serial.c</itemPath>
         <itemPath>src/low-level/timer.c</itemPath>
+        <itemPath>src/low-level/iic.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="OS" projectFiles="true">
         <itemPath>src/os/jobs.c</itemPath>

@@ -125,6 +125,9 @@ void board_update(void) {
 
     // UART
     serial_transmit();
+
+    // I2C
+    i2c_update();
 }
 
 void board_idle(void) {
@@ -171,5 +174,20 @@ void __ISR(_UART_1_VECTOR, ipl4) isr_uart1(void) {
         serial_receive(UART1);
         
         IFS0bits.U1RXIF = 0; // Clear the flag
+    }
+}
+
+void __ISR(_I2C_2_VECTOR, ipl4) isr_i2c2(void) {
+    /* Master interrupt */
+    if ((IEC1bits.I2C2MIE == True) && (IFS1bits.I2C2MIF == True)) {
+        i2c_isr(I2C2);
+
+        IFS1bits.I2C2MIF = 0; // Clear the flag
+    }
+
+    /* Bus error interrupt */
+    if ((IEC1bits.I2C2ABIE == True) && (IFS1bits.I2C2BIF == True)) {
+
+        IFS1bits.I2C2BIF = 0; // Clear the flag
     }
 }

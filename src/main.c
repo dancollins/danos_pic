@@ -16,9 +16,12 @@
 #include "board.h"
 #include "timer.h"
 #include "serial.h"
+#include "iic.h"
 
 Bool checkButtons(void);
 Bool checkUart(void);
+Bool sendi2c(void);
+Bool readi2c(void);
 Bool blinkyLed(void);
 
 Bool turnOffLed2(void);
@@ -32,6 +35,7 @@ void init(void) {
     InitialiseBoard(); // Prepare the board (this is basic IO stuff, and also CPU init stuff)
     timer_init(); // Prepare the systick timer
     serial_init(); // Prepare the serial port
+    i2c_init();
     jobs_init(); // Prepare the job controller
 }
 
@@ -61,10 +65,21 @@ int main(void) {
         .jobFunction = checkUart
     };
 
+    job_t sendI2CJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = sendi2c
+    };
+
+    job_t readI2CJob = {
+        .activationTime = timer_currentTime(),
+        .jobFunction = readi2c
+    };
+
     // Add the jobs into the jobs controller
     jobs_add(&blinkyLedJob);
     jobs_add(&checkButtonsJob);
     jobs_add(&checkSerialJob);
+    jobs_add(&readI2CJob);
 
     while (1) {
         board_update(); // Run the low level operations (buttons, uart...)
@@ -116,22 +131,46 @@ Bool checkUart(void) {
     if (strstr(uart_buf, "on") != Null) {
         led6 = 1;
         serial_putString("Turning LED on\r\n");
-        serial_putChar('{');
-        serial_putString(uart_buf);
-        serial_putString("}\r\n");
         serial_clearBuffer(UART1);
     }
 
     if (strstr(uart_buf, "off") != Null) {
         led6 = 0;
         serial_putString("Turning LED off\r\n");
-        serial_putChar('{');
-        serial_putString(uart_buf);
-        serial_putString("}\r\n");
         serial_clearBuffer(UART1);
     }
 
     return False; // This job never ends
+}
+
+Bool sendi2c(void) {
+    uint8_t data[6] = {0x00, 0x00, 0x55, 0x01, 0x02, 0x03};
+
+    I2CFrame_t f = {
+        .address = 0xA0,
+        .bytesToRead = 0,
+        .tx_buf_size = 6
+    };
+
+    memcpy(f.tx_buf, data, 6);
+
+    i2c_prepareFrame(I2C2, f);
+
+    return True;
+}
+
+Bool readi2c(void) {
+    uint8_t data[2] = {0x00, 0x00};
+
+    I2CFrame_t f = {
+        .address = 0xA0,
+        .bytesToRead = 5,
+        .tx_buf_size = 2
+    };
+
+    memcpy(f.tx_buf, data, 2);
+
+    return i2c_prepareFrame(I2C2, f); // This will return false if it fails, and therefor make this job run again
 }
 
 Bool blinkyLed(void) {

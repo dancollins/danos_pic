@@ -41,11 +41,11 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/low-level/board.o ${OBJECTDIR}/src/low-level/serial.o ${OBJECTDIR}/src/low-level/timer.o ${OBJECTDIR}/src/os/jobs.o ${OBJECTDIR}/src/os/list.o ${OBJECTDIR}/src/main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/src/low-level/board.o.d ${OBJECTDIR}/src/low-level/serial.o.d ${OBJECTDIR}/src/low-level/timer.o.d ${OBJECTDIR}/src/os/jobs.o.d ${OBJECTDIR}/src/os/list.o.d ${OBJECTDIR}/src/main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/low-level/board.o ${OBJECTDIR}/src/low-level/serial.o ${OBJECTDIR}/src/low-level/timer.o ${OBJECTDIR}/src/os/jobs.o ${OBJECTDIR}/src/os/list.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/low-level/iic.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/src/low-level/board.o.d ${OBJECTDIR}/src/low-level/serial.o.d ${OBJECTDIR}/src/low-level/timer.o.d ${OBJECTDIR}/src/os/jobs.o.d ${OBJECTDIR}/src/os/list.o.d ${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/low-level/iic.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/src/low-level/board.o ${OBJECTDIR}/src/low-level/serial.o ${OBJECTDIR}/src/low-level/timer.o ${OBJECTDIR}/src/os/jobs.o ${OBJECTDIR}/src/os/list.o ${OBJECTDIR}/src/main.o
+OBJECTFILES=${OBJECTDIR}/src/low-level/board.o ${OBJECTDIR}/src/low-level/serial.o ${OBJECTDIR}/src/low-level/timer.o ${OBJECTDIR}/src/os/jobs.o ${OBJECTDIR}/src/os/list.o ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/low-level/iic.o
 
 
 CFLAGS=
@@ -111,6 +111,11 @@ ${OBJECTDIR}/src/main.o: src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/src/main.o.d 
 	@${FIXDEPS} "${OBJECTDIR}/src/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/main.o.d" -o ${OBJECTDIR}/src/main.o src/main.c   
 	
+${OBJECTDIR}/src/low-level/iic.o: src/low-level/iic.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/src/low-level 
+	@${RM} ${OBJECTDIR}/src/low-level/iic.o.d 
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/iic.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/iic.o.d" -o ${OBJECTDIR}/src/low-level/iic.o src/low-level/iic.c   
+	
 else
 ${OBJECTDIR}/src/low-level/board.o: src/low-level/board.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
@@ -141,6 +146,11 @@ ${OBJECTDIR}/src/main.o: src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src 
 	@${RM} ${OBJECTDIR}/src/main.o.d 
 	@${FIXDEPS} "${OBJECTDIR}/src/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/main.o.d" -o ${OBJECTDIR}/src/main.o src/main.c   
+	
+${OBJECTDIR}/src/low-level/iic.o: src/low-level/iic.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/src/low-level 
+	@${RM} ${OBJECTDIR}/src/low-level/iic.o.d 
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/iic.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/iic.o.d" -o ${OBJECTDIR}/src/low-level/iic.o src/low-level/iic.c   
 	
 endif
 
