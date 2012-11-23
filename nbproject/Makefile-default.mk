@@ -84,83 +84,83 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 ${OBJECTDIR}/src/low-level/board.o: src/low-level/board.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/board.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/board.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/board.o.d" -o ${OBJECTDIR}/src/low-level/board.o src/low-level/board.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/board.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/board.o.d" -o ${OBJECTDIR}/src/low-level/board.o src/low-level/board.c   
 	
 ${OBJECTDIR}/src/low-level/serial.o: src/low-level/serial.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/serial.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/serial.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/serial.o.d" -o ${OBJECTDIR}/src/low-level/serial.o src/low-level/serial.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/serial.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/serial.o.d" -o ${OBJECTDIR}/src/low-level/serial.o src/low-level/serial.c   
 	
 ${OBJECTDIR}/src/low-level/timer.o: src/low-level/timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/timer.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/timer.o.d" -o ${OBJECTDIR}/src/low-level/timer.o src/low-level/timer.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/timer.o.d" -o ${OBJECTDIR}/src/low-level/timer.o src/low-level/timer.c   
 	
 ${OBJECTDIR}/src/low-level/iic.o: src/low-level/iic.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/iic.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/iic.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/iic.o.d" -o ${OBJECTDIR}/src/low-level/iic.o src/low-level/iic.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/iic.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/iic.o.d" -o ${OBJECTDIR}/src/low-level/iic.o src/low-level/iic.c   
 	
 ${OBJECTDIR}/src/os/jobs.o: src/os/jobs.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/os 
 	@${RM} ${OBJECTDIR}/src/os/jobs.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/os/jobs.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/os/jobs.o.d" -o ${OBJECTDIR}/src/os/jobs.o src/os/jobs.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/os/jobs.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/os/jobs.o.d" -o ${OBJECTDIR}/src/os/jobs.o src/os/jobs.c   
 	
 ${OBJECTDIR}/src/os/list.o: src/os/list.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/os 
 	@${RM} ${OBJECTDIR}/src/os/list.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/os/list.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/os/list.o.d" -o ${OBJECTDIR}/src/os/list.o src/os/list.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/os/list.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/os/list.o.d" -o ${OBJECTDIR}/src/os/list.o src/os/list.c   
 	
 ${OBJECTDIR}/src/test.o: src/test.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src 
 	@${RM} ${OBJECTDIR}/src/test.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/test.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/test.o.d" -o ${OBJECTDIR}/src/test.o src/test.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/test.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/test.o.d" -o ${OBJECTDIR}/src/test.o src/test.c   
 	
 ${OBJECTDIR}/src/driver/i2cEeprom.o: src/driver/i2cEeprom.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/driver 
 	@${RM} ${OBJECTDIR}/src/driver/i2cEeprom.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/driver/i2cEeprom.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/driver/i2cEeprom.o.d" -o ${OBJECTDIR}/src/driver/i2cEeprom.o src/driver/i2cEeprom.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/driver/i2cEeprom.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1 -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/driver/i2cEeprom.o.d" -o ${OBJECTDIR}/src/driver/i2cEeprom.o src/driver/i2cEeprom.c   
 	
 else
 ${OBJECTDIR}/src/low-level/board.o: src/low-level/board.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/board.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/board.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/board.o.d" -o ${OBJECTDIR}/src/low-level/board.o src/low-level/board.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/board.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/board.o.d" -o ${OBJECTDIR}/src/low-level/board.o src/low-level/board.c   
 	
 ${OBJECTDIR}/src/low-level/serial.o: src/low-level/serial.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/serial.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/serial.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/serial.o.d" -o ${OBJECTDIR}/src/low-level/serial.o src/low-level/serial.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/serial.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/serial.o.d" -o ${OBJECTDIR}/src/low-level/serial.o src/low-level/serial.c   
 	
 ${OBJECTDIR}/src/low-level/timer.o: src/low-level/timer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/timer.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/timer.o.d" -o ${OBJECTDIR}/src/low-level/timer.o src/low-level/timer.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/timer.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/timer.o.d" -o ${OBJECTDIR}/src/low-level/timer.o src/low-level/timer.c   
 	
 ${OBJECTDIR}/src/low-level/iic.o: src/low-level/iic.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/low-level 
 	@${RM} ${OBJECTDIR}/src/low-level/iic.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/low-level/iic.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/low-level/iic.o.d" -o ${OBJECTDIR}/src/low-level/iic.o src/low-level/iic.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/low-level/iic.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/low-level/iic.o.d" -o ${OBJECTDIR}/src/low-level/iic.o src/low-level/iic.c   
 	
 ${OBJECTDIR}/src/os/jobs.o: src/os/jobs.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/os 
 	@${RM} ${OBJECTDIR}/src/os/jobs.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/os/jobs.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/os/jobs.o.d" -o ${OBJECTDIR}/src/os/jobs.o src/os/jobs.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/os/jobs.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/os/jobs.o.d" -o ${OBJECTDIR}/src/os/jobs.o src/os/jobs.c   
 	
 ${OBJECTDIR}/src/os/list.o: src/os/list.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/os 
 	@${RM} ${OBJECTDIR}/src/os/list.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/os/list.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/os/list.o.d" -o ${OBJECTDIR}/src/os/list.o src/os/list.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/os/list.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/os/list.o.d" -o ${OBJECTDIR}/src/os/list.o src/os/list.c   
 	
 ${OBJECTDIR}/src/test.o: src/test.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src 
 	@${RM} ${OBJECTDIR}/src/test.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/test.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/test.o.d" -o ${OBJECTDIR}/src/test.o src/test.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/test.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/test.o.d" -o ${OBJECTDIR}/src/test.o src/test.c   
 	
 ${OBJECTDIR}/src/driver/i2cEeprom.o: src/driver/i2cEeprom.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/src/driver 
 	@${RM} ${OBJECTDIR}/src/driver/i2cEeprom.o.d 
-	@${FIXDEPS} "${OBJECTDIR}/src/driver/i2cEeprom.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -MMD -MF "${OBJECTDIR}/src/driver/i2cEeprom.o.d" -o ${OBJECTDIR}/src/driver/i2cEeprom.o src/driver/i2cEeprom.c   
+	@${FIXDEPS} "${OBJECTDIR}/src/driver/i2cEeprom.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/low-level" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/os" -I"C:/Users/Dan/Projects/Electronics/PIC/SimpleSheduler.X/include/driver" -MMD -MF "${OBJECTDIR}/src/driver/i2cEeprom.o.d" -o ${OBJECTDIR}/src/driver/i2cEeprom.o src/driver/i2cEeprom.c   
 	
 endif
 
@@ -175,11 +175,11 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -mdebugger -D__MPLAB_DEBUGGER_PK3=1 -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}         -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__ICD2RAM=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_PK3=1,--defsym=_min_heap_size=10240
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -mdebugger -D__MPLAB_DEBUGGER_PK3=1 -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}         -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__ICD2RAM=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_PK3=1,--defsym=_min_heap_size=20000
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}         -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=_min_heap_size=10240
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}         -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=_min_heap_size=20000
 	${MP_CC_DIR}\\xc32-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/SimpleSheduler.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
 endif
 

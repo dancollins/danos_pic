@@ -128,6 +128,9 @@ void board_update(void) {
 
     // I2C
     i2c_update();
+
+    // EEPROM
+    eeprom_update();
 }
 
 void board_idle(void) {

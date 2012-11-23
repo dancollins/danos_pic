@@ -18,6 +18,9 @@ Bool readi2c(void);
 Bool checki2c(void);
 Bool blinkyLed(void);
 
+void callback(void);
+void error(void);
+
 Bool turnOffLed2(void);
 Bool turnOffLed3(void);
 Bool turnOffLed4(void);
@@ -32,6 +35,7 @@ void init(void) {
     timer_init(); // Prepare the systick timer
     serial_init(); // Prepare the serial port
     i2c_init();
+    eeprom_init();
     jobs_init(); // Prepare the job controller
 }
 
@@ -77,7 +81,7 @@ int main(void) {
         jobs_update(); // Run the jobs
         
         // Go into sleep mode
-        board_idle();
+        //board_idle();
     }
 
     return 0;
@@ -159,26 +163,16 @@ Bool sendi2c(void) {
 }
 
 Bool readi2c(void) {
-    uint8_t data[2] = {0x00, 0x00};
+    uint8_t * rxBuf = calloc(4, sizeof(uint8_t));
+    eeprom_getData(rxBuf, 0, 4, callback, error);
+}
 
-    I2CFrame_t * f = malloc(sizeof(I2CFrame_t));
+void callback(void) {
+    led10 = 1;
+}
 
-    f->address = 0xA0;
-    f->bytesToRead = 4;
-    f->rx_buf = calloc(4, sizeof(uint8_t));
-    f->tx_buf_size = 2;
-    f->tx_buf = calloc(2, sizeof(uint8_t));
-
-    memcpy(f->tx_buf, data, 2);
-
-    job_t checkI2CJob = {
-        .activationTime = timer_currentTime(),
-        .jobFunction = checki2c
-    };
-
-    jobs_add(&checkI2CJob); // This will check that this job was a success
-
-    return i2c_prepareFrame(I2C2, f);
+void error(void) {
+    led12 = 1;
 }
 
 Bool checki2c(void) {

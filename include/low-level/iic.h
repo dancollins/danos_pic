@@ -59,6 +59,9 @@ typedef struct {
     uint8_t rx_buf_index; // Location of the cursor
     uint8_t bytesToRead; // Number of bytes to read back
 
+    void (*callback)(void); // The function to call when the frame is completed
+    void (*error)(void); // The function to call if the frame terminates early
+
     Bool success; // True when the frame has been processed
 } I2CFrame_t;
 

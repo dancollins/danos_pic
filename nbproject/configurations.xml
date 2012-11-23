@@ -88,7 +88,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\low-level;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\os"/>
+                  value="C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\low-level;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\os;C:\Users\Dan\Projects\Electronics\PIC\SimpleSheduler.X\include\driver"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
@@ -112,7 +112,7 @@
         <property key="extra-lib-directories" value=""/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
-        <property key="heap-size" value="10240"/>
+        <property key="heap-size" value="20000"/>
         <property key="input-libraries" value=""/>
         <property key="linker-symbols" value=""/>
         <property key="map-file" value=""/>

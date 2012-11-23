@@ -157,6 +157,14 @@ void i2c_isr(uint8_t p) {
             I2CStop(mod->moduleName);
             mod->frameToSend = False;
             mod->state = IDLE;
+
+            // Tell the owner of the frame that it has complete or failed
+            if (mod->frame->success == True) {
+                mod->frame->callback();
+            } else {
+                mod->frame->error();
+            }
+
             break;
 
         case BUSERROR:

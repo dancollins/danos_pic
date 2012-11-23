@@ -40,6 +40,14 @@ void list_init(list_t * l);
 Bool list_add(list_t * list, void * element);
 
 /**
+ * Pop an element off the bottom of the list
+ * @param list The list to pop from
+ * @param element The location to store the popped element
+ * @return True for success
+ */
+Bool list_pop(list_t * list, void * element);
+
+/**
  * Remove the given element from the list
  * @param list The list to modify
  * @param element The element to remove

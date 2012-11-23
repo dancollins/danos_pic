@@ -20,6 +20,31 @@ Bool list_add(list_t * list, void * element) {
     return True; // Link creation was successfull
 }
 
+Bool list_pop(list_t * list, void * element) {
+    list_el_t * link, * prev = Null;
+
+    if (list_length(list) == 0)
+        return False; // The list is empty
+
+    link = list->head;
+
+    while (link->next != Null) {
+        prev = link;
+        link = link->next;
+    }
+
+    element = link->element;
+    free(link);
+
+    if (prev != Null) {
+        prev->next = Null;
+    } else {
+        list->head = Null; // We just popped the last element in the list
+    }
+
+    return True;
+}
+
 Bool list_remove(list_t * list, void * element) {
     list_el_t * prev = Null; // The previous link in the chain
     list_el_t * link = list->head; // Point to the first element
